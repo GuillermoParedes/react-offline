@@ -7,6 +7,9 @@ import reducer from './reducer';
 import { routerMiddleware } from 'react-router-redux'
 import createHistory from 'history/createBrowserHistory';
 
+import { offlineMiddleware } from 'redux-offline-queue'
+
+
 export const history = createHistory();
 
 // Build the middleware for intercepting and dispatching navigation actions
@@ -17,7 +20,7 @@ const getMiddleware = () => {
     return applyMiddleware(myRouterMiddleware, promiseMiddleware, localStorageMiddleware);
   } else {
     // Enable additional logging in non-production environments.
-    return applyMiddleware(myRouterMiddleware, promiseMiddleware, localStorageMiddleware, createLogger())
+    return applyMiddleware( offlineMiddleware(), myRouterMiddleware, promiseMiddleware, localStorageMiddleware, createLogger())
   }
 };
 

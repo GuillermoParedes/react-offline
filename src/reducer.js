@@ -10,6 +10,7 @@ import settings from './reducers/settings';
 import { routerReducer } from 'react-router-redux';
 
 export default combineReducers({
+  offlineQueue: require('redux-offline-queue').reducer,
   article,
   articleList,
   auth,
